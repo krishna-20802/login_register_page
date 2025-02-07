@@ -98,7 +98,7 @@ def user():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM user')
         users = cursor.fetchall()
-        return render_template('user.html', users=users)
+        return render_template('index.html', users=users)
     return redirect(url_for('login'))  # Redirect to login if not logged in
 
 
