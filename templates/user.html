@@ -1,62 +1,104 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-    <style>
+    <title>User Page</title>
+	<style>
+        /* General styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f8f8f8;
+            color: #333;
         }
 
-        .dashboard-container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+        /* Header styling */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
             text-align: center;
         }
 
-        h2 {
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Cat breeds section */
+        .cat-breeds {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .breed {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .breed h2 {
             color: #333;
-            font-size: 24px;
+        }
+
+        .breed img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
             margin-bottom: 15px;
         }
 
-        p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
-
-        a {
-            font-size: 16px;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+	</style>
 </head>
 <body>
+    <h2>Welcome, {{ session['name'] }}!</h2>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    
+	<header>
+        <h1>Welcome to the Cat Blog</h1>
+        <p>Explore different cat breeds and their unique traits!</p>
+    </header>
 
-    <div class="dashboard-container">
-        <h2>Welcome, {{ user['name'] }}</h2>
-        <p>Email: {{ user['email'] }}</p>
-        <a href="{{ url_for('logout') }}">Logout</a>
-    </div>
+    <section class="cat-breeds">
+        <article class="breed">
+            <h2>Siamese</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Siam_lilacpoint.jpg/800px-Siam_lilacpoint.jpg" alt="Siamese Cat">
+            <p>The Siamese cat is one of the first distinctly recognized breeds of Asian cat. They are known for their slender, elegant bodies, large ears, and striking blue eyes.</p>
+        </article>
 
+        <article class="breed">
+            <h2>Maine Coon</h2>
+            <img src="https://media.istockphoto.com/id/1031592516/photo/maine-coon-cat-on-white-background.jpg?s=612x612&w=0&k=20&c=EZUIWLeUD31TKbgeVwcxh_z4q0ADXjvssqQA4zCoEx4=" alt="Maine Coon Cat">
+            <p>The Maine Coon is one of the largest domesticated cat breeds. It has a distinctive physical appearance and is known for its friendly and intelligent nature.</p>
+        </article>
+
+        <article class="breed">
+            <h2>Persian</h2>
+            <img src="https://cdn.pixabay.com/photo/2016/02/10/16/37/cat-1192026_1280.jpg" alt="Persian Cat">
+            <p>The Persian cat is known for its long fur and round face. They are generally quiet and enjoy a calm and peaceful environment.</p>
+        </article>
+    </section>
+
+    <footer>
+        <p>© 2024 Cat Blog. All rights reserved.</p>
+    </footer>
 </body>
 </html>
