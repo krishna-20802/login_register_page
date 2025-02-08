@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
@@ -7,7 +8,7 @@ import hashlib
 app = Flask(__name__)
 
 # Secret key for session management
-app.secret_key = 'xyzsdfg'  # Replace with a strong key in production
+app.secret_key = 'xyzsdfg'  # Ensure to replace with a strong key in production
 
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
@@ -53,13 +54,14 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # Clear session data
-    session.clear()  # This is more efficient than popping each value individually
+    session.pop('loggedin', None)
+    session.pop('userid', None)
+    session.pop('email', None)
     return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    message = ''
+    message = ''  # Corrected typo from 'mesage' to 'message'
     if request.method == 'POST' and 'name' in request.form and 'password' in request.form and 'email' in request.form:
         userName = request.form['name']
         password = request.form['password']
@@ -72,9 +74,9 @@ def register():
         
         if account:
             message = 'Account already exists!'
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):  # Simple email format validation
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             message = 'Invalid email address!'
-        elif not userName or not password or not email:  # Check for empty fields
+        elif not userName or not password or not email:
             message = 'Please fill out the form!'
         else:
             # Hash the password before storing
