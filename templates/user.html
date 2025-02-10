@@ -1,104 +1,180 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>User Page</title>
-	<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page - Cat Blog</title>
+    <style>
         /* General styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #f0f4f8;
             color: #333;
+            line-height: 1.6;
         }
 
         /* Header styling */
         header {
-            background-color: #333;
+            background-color: #3b4a57;
             color: #fff;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
+            font-size: 3em;
             margin: 0;
-            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: lighter;
+        }
+
+        /* User greeting and logout */
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .user-info h2 {
+            color: #333;
+        }
+
+        .user-info a {
+            text-decoration: none;
+            color: #3b4a57;
+            font-weight: bold;
+            background-color: #ff7f50;
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .user-info a:hover {
+            background-color: #ff5722;
         }
 
         /* Cat breeds section */
         .cat-breeds {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
             padding: 20px;
+            justify-items: center;
         }
 
         .breed {
             background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            margin: 15px;
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-        .breed h2 {
-            color: #333;
+        .breed:hover {
+            transform: scale(1.05);
         }
 
         .breed img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #f0f4f8;
+        }
+
+        .breed h2 {
+            font-size: 1.8em;
+            color: #333;
+            padding: 15px;
+            margin: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .breed p {
+            padding: 15px;
+            font-size: 1em;
+            color: #555;
+            text-align: center;
         }
 
         /* Footer styling */
         footer {
-            background-color: #333;
+            background-color: #3b4a57;
             color: #fff;
             text-align: center;
-            padding: 10px;
-            position: fixed;
+            padding: 15px 20px;
+            position: relative;
             bottom: 0;
             width: 100%;
         }
-	</style>
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .cat-breeds {
+                grid-template-columns: 1fr;
+            }
+
+            .user-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .user-info a {
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome, {{ session['name'] }}!</h2>
-    <p><a href="{{ url_for('logout') }}">Logout</a></p>
-    
-	<header>
-        <h1>Welcome to the Cat Blog</h1>
-        <p>Explore different cat breeds and their unique traits!</p>
+
+    <div class="user-info">
+        <h2>Welcome, {{ session['name'] }}!</h2>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <header>
+        <h1>Cat Blog</h1>
+        <p>Discover amazing cat breeds and their personalities!</p>
     </header>
 
     <section class="cat-breeds">
         <article class="breed">
             <h2>Siamese</h2>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Siam_lilacpoint.jpg/800px-Siam_lilacpoint.jpg" alt="Siamese Cat">
-            <p>The Siamese cat is one of the first distinctly recognized breeds of Asian cat. They are known for their slender, elegant bodies, large ears, and striking blue eyes.</p>
+            <p>The Siamese cat is known for its slender body, large ears, and striking blue eyes. It's an elegant and friendly breed with a vocal personality.</p>
         </article>
 
         <article class="breed">
             <h2>Maine Coon</h2>
             <img src="https://media.istockphoto.com/id/1031592516/photo/maine-coon-cat-on-white-background.jpg?s=612x612&w=0&k=20&c=EZUIWLeUD31TKbgeVwcxh_z4q0ADXjvssqQA4zCoEx4=" alt="Maine Coon Cat">
-            <p>The Maine Coon is one of the largest domesticated cat breeds. It has a distinctive physical appearance and is known for its friendly and intelligent nature.</p>
+            <p>The Maine Coon is one of the largest domestic cats, known for its friendly nature and tufted ears. They are intelligent and good with families.</p>
         </article>
 
         <article class="breed">
             <h2>Persian</h2>
             <img src="https://cdn.pixabay.com/photo/2016/02/10/16/37/cat-1192026_1280.jpg" alt="Persian Cat">
-            <p>The Persian cat is known for its long fur and round face. They are generally quiet and enjoy a calm and peaceful environment.</p>
+            <p>Persian cats are famous for their long, fluffy fur and calm temperament. They are loving companions who enjoy a peaceful environment.</p>
         </article>
     </section>
 
     <footer>
         <p>© 2024 Cat Blog. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
