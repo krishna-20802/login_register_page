@@ -13,7 +13,7 @@ app.secret_key = 'xyzsdfg'  # Ensure to replace with a strong key in production
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''  # Your MySQL password (empty here for localhost with no password)
+app.config['MYSQL_PASSWORD'] = 'Root@123'  # Your MySQL password (empty here for localhost with no password)
 app.config['MYSQL_DB'] = 'data'  # Make sure your database name is 'data'
 
 # Initialize MySQL
@@ -105,4 +105,4 @@ def user():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
